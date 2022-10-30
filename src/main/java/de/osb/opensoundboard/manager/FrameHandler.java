@@ -7,7 +7,8 @@ import java.awt.event.WindowEvent;
 public class FrameHandler extends JFrame {
     public FrameHandler() throws HeadlessException {
         super("OSB | OpenSoundBoard v1.0 | by Max and Christian");
-        this.setSize(800, 400);
+        this.setSize(750, 650);
+        this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.show();
     }
