@@ -6,7 +6,10 @@ import java.awt.event.WindowEvent;
 
 public class FrameHandler extends JFrame {
     public FrameHandler(String title) throws HeadlessException {
-        super(title);
+        super("OSB | OpenSoundBoard v1.0 | by Max and Christian");
+        this.setSize(800, 400);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.show();
     }
 
     @Override
