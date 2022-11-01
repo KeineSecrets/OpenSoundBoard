@@ -7,7 +7,7 @@ import java.io.File;
 public class SoundManager {
     public static void playStandardSound(String name) {
         String path = "./sounds/standardSounds/" + name + ".wav";
-        if (Player.playing) {
+        if (Player.getPlaying()) {
             Player.stop();
         }
         Player.play(path);
@@ -15,7 +15,7 @@ public class SoundManager {
 
     public static void playPrivateSound(String name) {
         String path = "./sounds/privateSounds/" + name + ".wav";
-        if (Player.playing) {
+        if (Player.getPlaying()) {
             Player.stop();
         }
         Player.play(path);

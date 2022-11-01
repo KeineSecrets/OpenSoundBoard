@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Player implements Runnable {
     private static Clip clip;
-    public static boolean playing = false;
+    private static boolean playing = false;
     private static String playPath;
 
     private static void startsThread() {
@@ -36,6 +36,10 @@ public class Player implements Runnable {
         }
         playing = false;
         System.out.println("stops");
+    }
+
+    public static boolean getPlaying() {
+        return playing;
     }
 
     public static void play(String path) {
