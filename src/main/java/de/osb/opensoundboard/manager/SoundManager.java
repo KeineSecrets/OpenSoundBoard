@@ -22,7 +22,7 @@ public class SoundManager {
     }
 
     public static void deleteSound(String name) {
-        String path = "/sounds/privateSounds/" + name + ".wav";
+        String path = "./sounds/privateSounds/" + name + ".wav";
         File f = new File(path);
         if (DeleteRequest.request(name)) {
             f.delete();
