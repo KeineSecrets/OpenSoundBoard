@@ -2,24 +2,30 @@ package de.osb.opensoundboard.manager;
 
 import de.osb.opensoundboard.sound.Player;
 
+import java.io.File;
+
 public class SoundManager {
-
-    public static boolean running;
-    public static String PATH;
-
-    public static void playSound(String path) {
-        PATH = path;
-            while (Player.playing) {
-                running = false;
-            }
-           running = true;
-
-        Player.startsThread();
-        VolumeManager.startsThread();
+    public static void playStandardSound(String name) {
+        String path = "./sounds/standardSounds/" + name + ".wav";
+        if (Player.playing) {
+            Player.stop();
+        }
+        Player.play(path);
     }
 
-    public static void stopSound() {
-        running = false;
-        //Sound stops
+    public static void playPrivateSound(String name) {
+        String path = "./sounds/privateSounds/" + name + ".wav";
+        if (Player.playing) {
+            Player.stop();
+        }
+        Player.play(path);
+    }
+
+    public static void deleteSound(String name) {
+        String path = "/sounds/privateSounds/" + name + ".wav";
+        File f = new File(path);
+        if (DeleteRequest.request(name)) {
+            f.delete();
+        }
     }
 }

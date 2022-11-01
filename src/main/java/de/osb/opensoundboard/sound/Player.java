@@ -1,13 +1,16 @@
 package de.osb.opensoundboard.sound;
 
-import de.osb.opensoundboard.manager.SoundManager;
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Player implements Runnable {
-
+    private static Clip clip;
     public static boolean playing = false;
-    public static int volume;
+    private static String playPath;
 
-    public static void startsThread() {
+    private static void startsThread() {
         Player obj = new Player();
         Thread thread = new Thread(obj);
         thread.start();
@@ -16,12 +19,31 @@ public class Player implements Runnable {
     }
 
     public void run() {
-        while (SoundManager.running) {
-
-            //stuff to run async in loop
-
+        try {
+            File f = new File(playPath);
+            if (f.exists()) {
+                AudioInputStream ai = AudioSystem.getAudioInputStream(f);
+                clip = AudioSystem.getClip();
+                clip.open(ai);
+                clip.start();
+                JOptionPane.showMessageDialog(null, "press 'ok' to stop playing");
+            }
+            else {
+                System.err.println("File does not exist");
+            }
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
+            throw new RuntimeException(e);
         }
         playing = false;
         System.out.println("stops");
+    }
+
+    public static void play(String path) {
+        playPath = path;
+        startsThread();
+    }
+
+    public static void stop() {
+        clip.stop();
     }
 }
