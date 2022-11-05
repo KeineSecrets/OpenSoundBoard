@@ -1,5 +1,7 @@
 package de.osb.opensoundboard.sound;
 
+import de.osb.opensoundboard.manager.ErrorManager;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
@@ -32,6 +34,7 @@ public class Player implements Runnable {
                 System.err.println("File does not exist");
             }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
+            ErrorManager.error(e);
             throw new RuntimeException(e);
         }
         playing = false;

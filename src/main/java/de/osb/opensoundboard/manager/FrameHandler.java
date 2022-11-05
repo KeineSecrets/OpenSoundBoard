@@ -7,6 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class FrameHandler extends JFrame implements ActionListener {
+
+    public static String error;
+    public static boolean deleteRequest;
+    public static boolean deleteRequestAnswer;
+    public static String deleteRequestContent;
+
     public FrameHandler() throws HeadlessException {
         super("OSB | OpenSoundBoard v1.0 | by Max and Christian");
         this.setSize(750, 650);
@@ -45,5 +51,9 @@ public class FrameHandler extends JFrame implements ActionListener {
             chooser.setName("Choose sound...");
             chooser.show();
         }
+    }
+
+    public static boolean deleteRequestAnswer() {
+        return deleteRequestAnswer;
     }
 }
